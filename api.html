@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1></h1>
+    <p></p>
+</body>
+<script>
+    const prompt1 = window.prompt("Please enter city name")
+    const city = prompt1
+    fetch(`https://api.openweathermap.org/data/2.5/weather?appid=6f06ee7a096d9b0b7d5b3c5bda07c46e&q=${city}&units=metric`)
+    .then((response)=>{
+        if(response.status>=200 && response.status<300){
+            // the response is healthy
+            return response.json()
+        }
+    }).then((weather)=>{
+        console.log(weather)
+        const temperature = document.querySelector("h1")
+        temperature.textContent = weather.main.temp
+        
+    });
+</script>
+</html>
